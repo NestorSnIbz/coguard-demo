@@ -24,8 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install "setuptools<81" coguard-cli
 
+      - name: Create CoGuard authentication file
+        run: |
+          mkdir -p ~/.coguard
+          echo "${{ secrets.COGUARD_EMAIL }}" > ~/.coguard/auth_file
+          echo "${{ secrets.COGUARD_PASSWORD }}" >> ~/.coguard/auth_file
+
       - name: Run CoGuard Scan
         run: coguard scan
-        env:
-          COGUARD_EMAIL: ${{ secrets.COGUARD_EMAIL }}
-          COGUARD_PASSWORD: ${{ secrets.COGUARD_PASSWORD }}
