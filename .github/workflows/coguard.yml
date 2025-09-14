@@ -25,7 +25,5 @@ jobs:
           pip install coguard-cli
 
       - name: Run CoGuard Scan
-        run: coguard scan
-        env:
-          COGUARD_EMAIL: ${{ secrets.COGUARD_EMAIL }}
-          COGUARD_PASSWORD: ${{ secrets.COGUARD_PASSWORD }}
+        run: |
+          coguard scan --email "${{ secrets.COGUARD_EMAIL }}" --password "${{ secrets.COGUARD_PASSWORD }}"
